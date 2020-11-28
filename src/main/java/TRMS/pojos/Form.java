@@ -6,6 +6,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
 
+
+
 public class Form {
 
 	private int formNumber;
@@ -16,17 +18,19 @@ public class Form {
 	private String description;
 	private String gradingFormat;
 	private String typeOfEvent;
-	private Blob attachments;
+	private byte[] attachments;
 	private double projectedAmount;
+	private double cost;
 	private boolean approvalStatus;
 	private boolean isUrgent;
+	private LocalTime timePosted;
 	
 	
 	
 	
 	public Form(LocalDate eventDate, LocalTime eventTime, String eventLocation,
-			String description, String gradingFormat, String typeOfEvent, Blob attachments, double projectedAmount,
-			boolean approvalStatus, boolean isUrgent, int employeeId) {
+			String description, String gradingFormat, String typeOfEvent, byte[] attachments, double projectedAmount,
+			boolean approvalStatus, boolean isUrgent, int employeeId, double cost, LocalTime timePosted) {
 		super();
 		this.eventDate = eventDate;
 		this.eventTime = eventTime;
@@ -35,15 +39,23 @@ public class Form {
 		this.gradingFormat = gradingFormat;
 		this.typeOfEvent = typeOfEvent;
 		this.attachments = attachments;
-		this.projectedAmount = projectedAmount;
+		this.cost = cost;
 		this.approvalStatus = approvalStatus;
 		this.isUrgent = isUrgent;
 		this.employeeId = employeeId;
+		this.projectedAmount = projectedAmount;
+		this.timePosted = timePosted;
 	}
 
 
 	public Form() {
 		
+	}
+
+	
+
+	public LocalTime getTimePosted() {
+		return timePosted;
 	}
 
 
@@ -127,12 +139,12 @@ public class Form {
 	}
 
 
-	public Blob getAttachments() {
+	public byte[] getAttachments() {
 		return attachments;
 	}
 
 
-	public void setAttachments(Blob attachments) {
+	public void setAttachments(byte[] attachments) {
 		this.attachments = attachments;
 	}
 
@@ -142,8 +154,13 @@ public class Form {
 	}
 
 
-	public void setProjectedAmount(double projectedAmount) {
-		this.projectedAmount = projectedAmount;
+	public double getCost() {
+		return cost;
+	}
+
+
+	public void setCost(double cost) {
+		this.cost = cost;
 	}
 
 

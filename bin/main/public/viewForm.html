@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>View Application Details</title>
+<link rel='stylesheet' href='view.css'>
+</head>
+<body>
+	<ul>
+	<li><a id= "employeeId"></a></li>
+	<li><a  id = "eventDate"></a></li>
+	<li><a id = "eventTime"></a></li>
+	<li><a id = "eventLocation"></a></li>
+	<li><a id = "description">Description: <textarea id = "description" disabled = "disabled"></textarea></a></li>
+	<li><a id = "gradingFormat"></a></li>
+	<li><a id = "typeOfEvent"></a></li>
+	<li><a id = "attachments">Attachments: <br><img id = "attachments" src=""></a></li>
+	<li><a id = "cost"></a></li>
+	<li><a id = "approvalStatus"></a></li>
+	<li><a>Is Urgent: <input type = "checkbox" id = "isUrgent" disabled = "disabled"></a></li>
+	<li><a id = "projectedAmount"></a></li>
+	</ul>
+	
+	
+	
+	
+	
+	
+	<form action = "http://localhost:9090/menu/view" method = "POST">
+	
+	<label for = "area">Field to Update</label>
+	<select name = "area" id = "area" class="area">
+		<option value = "event_date">Event Date </option>
+		<option value = "event_time">Event Time </option>
+		<option value = "event_location">Event Location </option>
+		<option value = "decription">Description</option>
+		<option value = "grading_format">Grading Format</option>
+		<option value = "typeOfEvent">Type of Event</option>
+		<option value = "costs">Cost</option>
+	</select>
+	<input type = "date" name = "change" id="change" class="change">
+	<button type="submit">Submit</button>
+	</form>
+	<script src = "fetchAndView.js" type = "text/javascript"></script>
+</body>
+</html>

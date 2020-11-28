@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Form Creation</title>
+<link rel = "stylesheet" href = "formCreation.css">
+</head>
+<body>
+
+  <div class="testbox">
+      <form action="http://localhost:9090/form" method="POST" enctype = "multipart/form-data">
+        <div class="banner">
+          <h1>Form Registration</h1>
+        </div>
+        <br/>
+        <fieldset>
+          <legend>Information</legend>
+          <div class="item">
+            <label for="eventDate"> Date of Event<span>*</span></label>
+            <input type="date" name="eventDate" />
+          </div>
+          <div class="item">
+            <label for="eventTime">Time of Event<span>*</span></label>
+            <input type="time" name="eventTime" />
+          </div>
+          <div class="item">
+            <label for="eventLocation">Location of Event<span>*</span></label>
+            <input type="text" name="eventLocation" />
+          </div>
+          <div class="item">
+            <label for="description">Description</label>
+            <textarea name="description"></textarea>
+          </div>
+          <div class="item">
+          <label for = "gradingFormat">Grading Format</label>
+            <select name="gradingFormat">
+        	<option value = "Standard">Standard</option>
+        	<option value = "Numeric">Numeric</option>
+        	<option value = "Subjective">Subjective</option>
+        	</select>
+        	</div>
+           <div class="item">
+           <label for = "typeOfEvent">Type of Event</label>
+            <select name="typeOfEvent">
+        		<option value = "University Courses">University Courses</option>
+        		<option value = "Seminars">Seminar</option>
+        		<option value = "Certification Preparation Classes">Certification Preparation Classes</option>
+        		<option value = "Certification">Certification</option>
+        		<option value = "Technical Training">Technical Training</option>
+        		<option value = "Other">Other</option>
+        	</select>
+          </div>
+          <div class="item">
+           	<label for="cost">Cost of Event</label>
+          	<input type = "number" name="cost">
+          </div>
+          <div class="item">
+            <label for="files">File Uploads</label>
+            <input type="file" name="files" id = "file">
+             </div>
+          <div class="item">
+          <label for="isUrgent" class="pure-checkbox"><input type = "checkbox" name = "isUrgent">it is Urgent</label>
+          </div>
+          <script src='login.js'></script>
+          </fieldset>
+          <button type="submit" href = 'formMenu.html'>Submit</button>
+          </form>
+          </div>
+
+
+</body>
+</html>

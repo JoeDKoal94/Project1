@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>View Application Details</title>
+<link rel='stylesheet' href='view.css'>
+</head>
+<body>
+	<ul>
+	<li><a id= "employeeId"></a></li>
+	<li><a  id = "eventDate"></a></li>
+	<li><a id = "eventTime"></a></li>
+	<li><a id = "eventLocation"></a></li>
+	<li><a id = "eventLocation">Description: <textarea id = "description" disabled = "disabled"></textarea></a></li>
+	<li><a id = "gradingFormat"></a></li>
+	<li><a id = "typeOfEvent"></a></li>
+	<li><a id = "typeOfEvent">Attachments: <br><img id = "attachments" src=""></a></li>
+	<li><a id = "cost"></a></li>
+	<li><a id = "approvalStatus"></a></li>
+	<li><a>Is Urgent: <input type = "checkbox" id = "isUrgent" disabled = "disabled"></a></li>
+	<li><a id = "projectedAmount"></a></li>
+	</ul>
+	
+	
+	<form action = "http://localhost:9090/menu/dsDhV" method = "POST">
+	
+	<ul>
+		<li><a>Application Approval<br>
+		<label for = "apApprove">Approved<input type = "radio" name = "apApprove" value = "true" id = "apApprove"></label>
+		<label for = "apApprove">Declined<input type = "radio" name = "apApprove" value = "false" id = "apDecline"></label></a><li>
+		<li><a>Reason for Denial<br>
+		<textarea name = "reason" disabled = "disabled" id="reason"></textarea></a></li>
+		<li><a>Additional Info Required<br>
+		<input type = "checkbox" name = "needInfo" id ="infoCheck" value = "true"></a></li>
+		<li><a></a></li>
+		<li><a>To be Notified<br>
+		<select name = "target" disabled = "disabled" id ="target">
+			<option value = ""></option> 
+			<option value = "Employee">Employee</option>
+			<option value = "Direct Supervisor">Direct Supervisor</option>
+			<option value = "Department Head">Department Head</option>
+		</select></a></li>
+	</ul>
+	
+	<a href= 'formMenu.html'><button type="submit" id="sendingIt">Submit</button></a>
+	</form>
+<script src = "fetchAndDecide.js" type = "text/javascript"></script>
+</body>
+</html>
