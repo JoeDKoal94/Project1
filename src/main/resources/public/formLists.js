@@ -3,7 +3,7 @@ window.onload = function () {
     //AJAX - Asynchronous JavaScript and XML
     //Initialize xhr object
     let xhr = new XMLHttpRequest();
-    const url = "http://localhost:9090/menu/employee";
+    const url = "menu/employee";
     //sets up ready state handler
     xhr.onreadystatechange = function () {
         console.log(xhr.readyState);
@@ -86,7 +86,7 @@ let addRow = function (myWait) {
 
 
 	delBut.setAttribute("id", myWait.formNumber);
-	delform.setAttribute("action", "http://localhost:9090/menu/employee");
+	delform.setAttribute("action", "menu/employee");
 	delform.setAttribute("method", "POST");
 	delBut.onclick = function(){
     	document.cookie = "numForm = " + myWait.formNumber;

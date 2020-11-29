@@ -2,7 +2,7 @@ window.onload = function () {
     //AJAX - Asynchronous JavaScript and XML
     //Initialize xhr object
     let xhr = new XMLHttpRequest();
-    const url = "http://localhost:9090/menu/dsDhV";
+    const url = "menu/dsDhV";
     //sets up ready state handler
     xhr.onreadystatechange = function () {
         console.log(xhr.readyState);

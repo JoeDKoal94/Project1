@@ -10,10 +10,11 @@ public class ConnectionUtil {
 	
 	private final static String USERNAME = System.getenv("DATA_USERNAME");
 	private final static String PASSWORD = System.getenv("DATA_PASSWORD");
+	private final static String URL = System.getenv("DATA_URL");
 
 	public Connection createConnection() throws SQLException {
 		
-		Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", USERNAME, PASSWORD);
+		Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 		return conn;
 	}
 	

@@ -4,7 +4,7 @@
     //AJAX - Asynchronous JavaScript and XML
     //Initialize xhr object
     let xhr = new XMLHttpRequest();
-    const url = "http://localhost:9090/menu/bencoV";
+    const url = "menu/bencoV";
     //sets up ready state handler
     xhr.onreadystatechange = function () {
         console.log(xhr.readyState);
