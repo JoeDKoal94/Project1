@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
+import TRMS.pojos.ApplicationStatus;
 import TRMS.pojos.Employee;
 import TRMS.pojos.Form;
 import TRMS.pojos.WaitList;
@@ -26,9 +27,17 @@ public interface ManipulationInterface {
 	
 	public Employee updateEmployee(int employeeId, String area, String change);
 
-	public Form fetchForm(int employeeNumber);
+	public Form fetchForm(int formNumber);
+	
+	public ApplicationStatus fetchAppStatus(int formNumber);
+	
+	public void deleteForm(int formNumber);
+	
+	public void updateMyConsent(int formNumber, boolean update);
 	
 	public List<WaitList> fetchWaitList(String authority, int emp);
+	
+	public List<Form> fetchForms(int emp);
 	
 	public Form fetchAppForm(int appNum);
 	

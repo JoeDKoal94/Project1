@@ -1,6 +1,4 @@
-/**
- * 
- */window.onload = function () {
+window.onload = function () {
     //AJAX - Asynchronous JavaScript and XML
     //Initialize xhr object
     let xhr = new XMLHttpRequest();
@@ -22,8 +20,6 @@
                 console.log("waiting response");
                 break;
             case 4:
-                console.log("FINISHED!!!!!!!!!!!");
-                //logic to add guest to table
                 if (xhr.status === 200) {
                     console.log(xhr.responseText);
                     let form = JSON.parse(xhr.responseText);

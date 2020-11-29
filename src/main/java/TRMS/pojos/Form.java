@@ -54,8 +54,15 @@ public class Form {
 
 	
 
+	
+
 	public LocalTime getTimePosted() {
 		return timePosted;
+	}
+
+
+	public void setTimePosted(LocalTime timePosted) {
+		this.timePosted = timePosted;
 	}
 
 
@@ -149,8 +156,15 @@ public class Form {
 	}
 
 
+	
+
 	public double getProjectedAmount() {
 		return projectedAmount;
+	}
+
+
+	public void setProjectedAmount(double projectedAmount) {
+		this.projectedAmount = projectedAmount;
 	}
 
 

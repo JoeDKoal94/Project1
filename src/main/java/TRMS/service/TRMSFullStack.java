@@ -11,6 +11,7 @@ import java.time.LocalTime;
 import java.util.List;
 
 import TRMS.dao.*;
+import TRMS.pojos.ApplicationStatus;
 import TRMS.pojos.Employee;
 import TRMS.pojos.Form;
 import TRMS.pojos.WaitList;
@@ -29,8 +30,22 @@ public class TRMSFullStack implements ManipulationInterface{
 		return form;
 	}
 
-
 	
+	
+	@Override
+	public void deleteForm(int formNumber) {
+		theDao.deleteForm(formNumber);
+	}
+
+
+
+	@Override
+	public void updateMyConsent(int formNumber, boolean update) {
+		theDao.updateConsent(formNumber, update);
+	}
+
+
+
 	@Override
 	public Employee fetchEmployee(String username) {
 		return theDao.retrieveEmployee(username);
@@ -72,15 +87,30 @@ public class TRMSFullStack implements ManipulationInterface{
 	}
 
 	@Override
-	public Form fetchForm(int employeeNumber) {
-		return theDao.retrieveForm(employeeNumber);
+	public Form fetchForm(int formNumber) {
+		return theDao.retrieveForm(formNumber);
 	}
+
+	
+	@Override
+	public ApplicationStatus fetchAppStatus(int formNumber) {
+		return theDao.retrieveStatus(formNumber);
+	}
+
+
 
 	@Override
 	public List<WaitList> fetchWaitList(String authority, int emp){
 		return theDao.retrieveWaitList(authority, emp);
 	}
 	
+
+	@Override
+	public List<Form> fetchForms(int emp) {
+		return theDao.retrieveSubmittedForms(emp);
+	}
+
+
 
 	@Override
 	public Form fetchAppForm(int appNum) {

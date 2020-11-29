@@ -5,13 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.TimerTask;
 
+import org.apache.log4j.Logger;
 
-import TRMS.pojos.BenCoWaitlist;
-import TRMS.pojos.WaitList;
+
 import TRMS.util.ConnectionUtil;
 
 public class TimerDao extends TimerTask {
@@ -19,6 +17,7 @@ public class TimerDao extends TimerTask {
 	String name;
 
 private ConnectionUtil connUtil = new ConnectionUtil();
+private static Logger log = Logger.getRootLogger();
 
 
 
@@ -55,11 +54,13 @@ private ConnectionUtil connUtil = new ConnectionUtil();
 					int number = resultSet.getInt(1);
 					PreparedStatement preparedStatement = conn.prepareStatement(sentBackDS + number);
 					int rowsAffected = preparedStatement.executeUpdate();
+					log.info("Direct Supervisor has been auto approved");
 				}
 				if(LocalTime.now().compareTo(resultSet.getTime(5).toLocalTime().plusMinutes(6)) == 1 && resultSet.getBoolean(3) == false) {
 					int number = resultSet.getInt(1);
 					PreparedStatement preparedStatement = conn.prepareStatement(sentBackDH + number);
 					int rowsAffected = preparedStatement.executeUpdate();
+					log.info("Department Head has been auto approved");
 				}
 				if(LocalTime.now().compareTo(resultSet.getTime(5).toLocalTime().plusMinutes(8)) == 1 && resultSet.getBoolean(4) == false) {
 					System.out.println("Right Here");
@@ -67,6 +68,7 @@ private ConnectionUtil connUtil = new ConnectionUtil();
 					PreparedStatement preparedStatement = conn.prepareStatement(notifyBenCo + number);
 					int rowsAffected = preparedStatement.executeUpdate();
 					shouldSend = 1;
+					log.info("Benefits Coordinator has been Notified and sent an email to.");
 				}
 				if(shouldSend == 1) {notify.send();}
 			}

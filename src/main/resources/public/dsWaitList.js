@@ -22,8 +22,7 @@ window.onload = function () {
                 console.log("waiting response");
                 break;
             case 4:
-                console.log("FINISHED!!!!!!!!!!!");
-                //logic to add guest to table
+
                 if (xhr.status === 200) {
                     console.log(xhr.responseText);
                     let waitList = JSON.parse(xhr.responseText);

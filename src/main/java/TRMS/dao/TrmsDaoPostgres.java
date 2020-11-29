@@ -14,17 +14,21 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.sql.DataSource;
+import org.apache.log4j.Logger;
 import TRMS.pojos.*;
 import TRMS.util.ConnectionUtil;
 import io.javalin.http.UploadedFile;
 
 public class TrmsDaoPostgres implements TrmsDao{
-
+	private static Logger log = Logger.getRootLogger();
 	private Statement statement;
 	private ConnectionUtil connUtil = new ConnectionUtil();
-
+	private DataSource ds;
 	
-	
+	public TrmsDaoPostgres(DataSource ds) {
+		this.ds = ds;
+	}
 	public void setConnUtil(ConnectionUtil connUtil) {
 		this.connUtil = connUtil;
 	}
@@ -54,6 +58,7 @@ public class TrmsDaoPostgres implements TrmsDao{
 			preparedStatement.setString(12, paper.getTimePosted().toString());
 			
 			int rowsAffected = preparedStatement.executeUpdate();
+			log.info("Database Updated");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -61,10 +66,41 @@ public class TrmsDaoPostgres implements TrmsDao{
 		
 
 	}
+	
+	
 
 	@Override
-	public Form retrieveForm(int employeeNumber) {
-		String query = "select * from \"TRMS\".form where form_number = (select max(form_number) from \"TRMS\".form where employee_id = " + employeeNumber + ");";
+	public void createEmployee(Employee emp) {
+		String sql = "insert into \"TRMS\".employee values( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+try (Connection conn = connUtil.createConnection()) {
+			
+			PreparedStatement preparedStatement = conn.prepareStatement(sql);
+			preparedStatement.setInt(1, emp.getEmployeeId());
+			preparedStatement.setString(2, emp.getFirstName());
+			preparedStatement.setString(3, emp.getLastName());
+			preparedStatement.setString(4, emp.getPhoneNumber());
+			preparedStatement.setString(5, emp.getAddress());
+			preparedStatement.setDouble(6, emp.getAvailableAmount());
+			preparedStatement.setString(7, emp.getAuthority());
+			preparedStatement.setString(8, emp.getCity());
+			preparedStatement.setString(9, emp.getState());
+			preparedStatement.setString(10, emp.getPostalCode());
+			preparedStatement.setString(11, emp.getEmailAdd());
+			preparedStatement.setString(12, emp.getUsername());
+			preparedStatement.setString(13, emp.getPassword());
+			
+			int rowsAffected = preparedStatement.executeUpdate();
+			log.info("Database Updated");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+	}
+	
+	
+	@Override
+	public Form retrieveForm(int formNumber) {
+		String query = "select * from \"TRMS\".form where form_number = " + formNumber;
 		Form form = new Form();
 		try(Connection conn = connUtil.createConnection()){
 			statement = conn.createStatement();
@@ -82,15 +118,36 @@ public class TrmsDaoPostgres implements TrmsDao{
 			boolean approvalStatus = rs.getBoolean("approval_status");
 			boolean isUrgent = rs.getBoolean("is_urgent");
 			int passId = rs.getInt("employee_id");
-			int formNumber = rs.getInt("form_number");
+			int formNumbers = rs.getInt("form_number");
 			LocalTime timePosted = rs.getObject("time_posted", LocalTime.class);
 			
 			form = new Form(date, time, location, description, grading, type, attachments, projectedMoney, approvalStatus, isUrgent, passId, cost, timePosted);
-			form.setFormNumber(formNumber);}}
+			form.setFormNumber(formNumbers);
+			log.info("Data retrieved from Database");}}
 		catch(SQLException e) {
 			e.printStackTrace();
 		}
 		return form;
+	}
+	
+	
+	@Override
+	public ApplicationStatus retrieveStatus(int formNumber) {
+		String query = "select * from \"TRMS\".approval_form where form_number = " + formNumber;
+		ApplicationStatus app = null;
+		try(Connection conn = connUtil.createConnection()){
+			statement = conn.createStatement();
+			ResultSet rs = statement.executeQuery(query);
+			while(rs.next()) {
+				app = new ApplicationStatus(rs.getInt(1), rs.getInt(2), rs.getBoolean(3),
+						rs.getBoolean(4), rs.getBoolean(5), rs.getString(6), rs.getBoolean(7),
+						rs.getBoolean(8), rs.getDouble(11), rs.getString(9), rs.getBoolean(10));
+				log.info("Data retrieved from Database");
+			}}
+		catch(SQLException e) {
+			
+		}
+		return app;
 	}
 
 	@Override
@@ -120,6 +177,7 @@ public class TrmsDaoPostgres implements TrmsDao{
 				preparedStatement.setString(1, change);
 			}
 			int rowsAffected = preparedStatement.executeUpdate();
+			log.info("Data Updated");
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
@@ -128,11 +186,32 @@ public class TrmsDaoPostgres implements TrmsDao{
 
 	@Override
 	public void deleteForm(int formNumber) {
-		// TODO Auto-generated method stub
+		String query = "DELETE FROM \"TRMS\".form WHERE form_number = " + formNumber;
+		try(Connection conn = connUtil.createConnection()){
+			PreparedStatement preparedStatement = conn.prepareStatement(query);
+			int rowsAffected = preparedStatement.executeUpdate();
+			log.info("Data Deleted from Database");
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
 		
 	}
 
 	
+	@Override
+	public void updateConsent(int formNumber, boolean update) {
+		String query = "update \"TRMS\".approval_form set consent_to_exceed = ? where form_number = " + formNumber;
+		try(Connection conn = connUtil.createConnection()){
+			PreparedStatement preparedStatement = conn.prepareStatement(query);
+			preparedStatement.setBoolean(1, update);
+			int rowsAffected = preparedStatement.executeUpdate();
+			log.info("Data Updated");
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
 	@Override
 	public Employee retrieveEmployee(String username) {
 		String query = "select * from \"TRMS\".employee where username = '"+ username +"';";
@@ -170,7 +249,7 @@ public class TrmsDaoPostgres implements TrmsDao{
 			case "BenCo Direct Supervisor":
 				emp = new BenCoSupervisor(firstnames, lastnames, phoneNumber, addresse, availableAmount, superuser, empId, emailAdd, city, state, postalCode, usernames, password);
 			}
-			}}
+			}log.info("Data retrieved from Database");}
 		catch(SQLException e) {
 			e.printStackTrace();
 		}
@@ -203,7 +282,7 @@ public class TrmsDaoPostgres implements TrmsDao{
 			LocalTime timePosted = rs.getObject("time_posted", LocalTime.class);
 			
 			form = new Form(date, time, location, description, grading, type, attachments, projectedMoney, approvalStatus, isUrgent, passId, cost, timePosted);
-			form.setFormNumber(formNumber);}}
+			form.setFormNumber(formNumber);}log.info("Data retrieved from Database");}
 		catch(SQLException e) {
 			e.printStackTrace();
 		}
@@ -250,7 +329,7 @@ public class TrmsDaoPostgres implements TrmsDao{
 			case "BenCo Direct Supervisor":
 				emp = new BenCoSupervisor(firstnames, lastnames, phoneNumber, addresse, availableAmount, superuser, empId, emailAdd, city, state, postalCode, usernames, password);
 			}
-			}}
+			}log.info("Data retrieved from Database");}
 		catch(SQLException e) {
 			e.printStackTrace();
 		}
@@ -294,15 +373,35 @@ public class TrmsDaoPostgres implements TrmsDao{
 			while (resultSet.next()) {
 				waitList.add(makeList(resultSet, counter));
 			}
-
+			log.info("Data retrieved from Database");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return waitList;
 	}
+	
+	
+	
+	@Override
+	public List<Form> retrieveSubmittedForms(int emp) {
+			String query = "select * from \"TRMS\".form where employee_id = " + emp;
+			List<Form> myForms = new ArrayList<>();
+			try (Connection conn = connUtil.createConnection()) {
 
-	
-	
+				PreparedStatement pstmt = conn.prepareStatement(query);
+
+				ResultSet resultSet = pstmt.executeQuery();
+				
+				while (resultSet.next()) {
+					myForms.add(makeForms(resultSet));
+				}
+				log.info("Data retrieved from Database");
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return myForms;
+	}
+
 	@Override
 	public boolean updateWaitlist(int employeeNum, boolean apApprove, boolean addInfo, String reason, String authority, String target) {
 		String query = "";
@@ -328,6 +427,7 @@ public class TrmsDaoPostgres implements TrmsDao{
 				preparedStatement.setString(4, target);
 			}
 			int rowsAffected = preparedStatement.executeUpdate();
+			log.info("Data Updated");
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
@@ -372,6 +472,7 @@ public class TrmsDaoPostgres implements TrmsDao{
 				
 			}
 			int rowsAffected = preparedStatement.executeUpdate();
+			log.info("Data Updated");
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
@@ -392,6 +493,13 @@ public class TrmsDaoPostgres implements TrmsDao{
 		return new BenCoWaitlist(rs.getInt(1), rs.getInt(2), rs.getBoolean(11), rs.getString(5), rs.getBoolean(6), rs.getBoolean(12), rs.getString(7), rs.getBoolean(9), rs.getString(10), rs.getDouble(8));
 	}
 	
+	
+	public Form makeForms(ResultSet rs)throws SQLException{
+		Form app = new Form(rs.getObject(3, LocalDate.class), rs.getObject(4, LocalTime.class), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getBytes(9), rs.getDouble(10), rs.getBoolean(11), rs.getBoolean(12), rs.getInt(2), rs.getDouble(13), rs.getObject(14, LocalTime.class));
+		app.setFormNumber(rs.getInt(1));
+		return app;
+		
+	}
 	
 	public String addString(boolean check) {
 		if(check == true) {

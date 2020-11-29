@@ -46,3 +46,8 @@
 	 transform-origin: left;
 }
  
+ 
+#attachments {
+	height: 30%;
+	width: 30%;
+}

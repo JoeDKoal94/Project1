@@ -2,7 +2,7 @@ window.onload = function () {
     //AJAX - Asynchronous JavaScript and XML
     //Initialize xhr object
     let xhr = new XMLHttpRequest();
-    const url = "http://localhost:9090/menu/view";
+    const url = "http://localhost:9090/menu/employee/view";
     //sets up ready state handler
     xhr.onreadystatechange = function () {
         console.log(xhr.readyState);
@@ -67,6 +67,12 @@ let addInfo = function (myForm) {
 	stats.innerHTML = "Approval Status:  " + myForm.approvalStatus;
 	urgency.innerHTML = myForm.isUrgent;
 	amount.innerHTML = "Projected Amount: "+ myForm.projectedAmount;
+	
+	stats.setAttribute("id", myForm.formNumber);
+    stats.onclick = function(){
+    	document.cookie = "numForm = " + myForm.formNumber;
+    	window.location.href= 'viewAppStatus.html';
+    }
 
 }
 
