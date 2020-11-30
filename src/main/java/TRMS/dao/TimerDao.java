@@ -70,7 +70,7 @@ private static Logger log = Logger.getRootLogger();
 					shouldSend = 1;
 					log.info("Benefits Coordinator has been Notified and sent an email to.");
 				}
-				if(shouldSend == 1) {notify.send();}
+				//if(shouldSend == 1) {notify.send();}
 			}
 			pstmt.close();
 		} catch (SQLException e) {
