@@ -1,0 +1,23 @@
+Benefits Coordinator has been Notified and sent an email to.
+Data retrieved from Database
+Data retrieved from Database
+Data retrieved from Database
+Username naturalP has logged in
+Log in successful
+Data retrieved from Database
+Validating user before fetching list from database
+Data retrieved from Database
+Sending Data to be viewed in HTML
+Data retrieved from Database
+retrieved Employee ID 4, personal info accessed
+Data retrieved from Database
+retrieved Employee ID 4, personal info accessed
+Data retrieved from Database
+Checking user if authorized to access feature
+Data retrieved from Database
+Data retrieved from Database
+Checking user if authorized to access feature
+User not authorized to access feature
+Data retrieved from Database
+Checking user if authorized to access feature
+User not authorized to access feature
