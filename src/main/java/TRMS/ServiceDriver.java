@@ -22,7 +22,7 @@ TimerDao schedUpdate = new TimerDao("postgres");
 		t.scheduleAtFixedRate(schedUpdate, 0, 30000);
 		Javalin app = Javalin.create( config -> {
 			config.addStaticFiles("/public");
-	}).start(9090);
+	}).start(80);
 		
 		app.post(LOG_IN, ctx -> authController.login(ctx));
 		app.get(LOG_IN, ctx -> authController.checkUser(ctx));
