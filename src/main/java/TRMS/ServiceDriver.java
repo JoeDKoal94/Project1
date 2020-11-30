@@ -18,8 +18,10 @@ public class ServiceDriver {
 	public static void main(String[] args) {
 TimerDao schedUpdate = new TimerDao("postgres");
 		
-		Timer t = new Timer();
-		t.scheduleAtFixedRate(schedUpdate, 0, 30000);
+//up to date
+
+		//Timer t = new Timer();
+		//t.scheduleAtFixedRate(schedUpdate, 0, 30000);
 		Javalin app = Javalin.create( config -> {
 			config.addStaticFiles("/public");
 	}).start(9090);
