@@ -109,3 +109,6 @@ function checkFields() {
 }
 
 document.getElementById("sendingIt").addEventListener('click', checkFields());
+document.getElementById("sendingIt").onclick = function(){
+		window.location.href='formMenu.html';
+}

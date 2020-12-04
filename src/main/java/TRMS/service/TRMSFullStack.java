@@ -11,6 +11,7 @@ import java.time.LocalTime;
 import java.util.List;
 
 import TRMS.dao.*;
+import TRMS.pojos.AfterEventForm;
 import TRMS.pojos.ApplicationStatus;
 import TRMS.pojos.Employee;
 import TRMS.pojos.Form;
@@ -32,6 +33,28 @@ public class TRMSFullStack implements ManipulationInterface{
 
 	
 	
+	
+	
+	@Override
+	public AfterEventForm createPress(int appId, String grade, boolean passing) {
+		AfterEventForm fg = new AfterEventForm(appId, grade, passing, false);
+		theDao.applyAfterForm(fg);
+		return fg;
+	}
+
+
+
+
+
+	@Override
+	public boolean checkPass(int formNumber) {
+		return theDao.checkIfPass(formNumber);
+	}
+
+
+
+
+
 	@Override
 	public void deleteForm(int formNumber) {
 		theDao.deleteForm(formNumber);

@@ -9,6 +9,8 @@ public interface TrmsDao {
 		
 	public void createForm(Form paper);
 	
+	public void applyAfterForm(AfterEventForm fg);
+	
 	public void createEmployee (Employee emp);
 		
 	public Form retrieveForm(int formNumber);
@@ -34,4 +36,6 @@ public interface TrmsDao {
 	public boolean updateWaitlist(int employeeNum, boolean apApprove, boolean addInfo, String reason, String authority, String target);
 
 	public boolean updateBencoWaitlist(int employeeNum, boolean apApprove, boolean addInfo, String reason, String authority, String target, boolean willExceed, String reasonMon, double amountExceed);
+	
+	public boolean checkIfPass(int formNumber);
 }

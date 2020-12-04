@@ -4,5 +4,9 @@ window.onload = function() {
    let error = document.getElementById("error");
    error.innerHTML = path;
 
+document.getElementById("toForm").onclick = function(){
+		window.location.href='formMenu.html';
+}
+
 }
  

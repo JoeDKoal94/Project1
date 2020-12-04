@@ -70,6 +70,24 @@ public class TrmsDaoPostgres implements TrmsDao{
 	
 
 	@Override
+	public void applyAfterForm(AfterEventForm fg) {
+		String sql = "insert into \"TRMS\".grade_presentation_upload values (?, ?, ?, null)";
+		
+		try (Connection conn = connUtil.createConnection()) {
+			
+			PreparedStatement preparedStatement = conn.prepareStatement(sql);
+			preparedStatement.setInt(1, fg.getAppId());
+			preparedStatement.setString(2, fg.getGrade());
+			preparedStatement.setBoolean(3, fg.isPassing());
+			int rowsAffected = preparedStatement.executeUpdate();
+			log.info("Database Updated");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		
+	}
+	@Override
 	public void createEmployee(Employee emp) {
 		String sql = "insert into \"TRMS\".employee values( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 try (Connection conn = connUtil.createConnection()) {
@@ -500,6 +518,24 @@ try (Connection conn = connUtil.createConnection()) {
 		return app;
 		
 	}
+	
+	@Override
+	public boolean checkIfPass(int formNumber) {
+		String sql = "select approval_status, event_date from \"TRMS\".form where form_number = " + formNumber;
+		try(Connection conn = connUtil.createConnection()){
+			PreparedStatement preparedStatement = conn.prepareStatement(sql);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			
+			while (resultSet.next()) {
+				if(!resultSet.getBoolean(1)) {return false;}
+				else if(LocalDate.now().compareTo(resultSet.getObject(2, LocalDate.class)) != 1) {return false;}
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+			return true;
+	}
+	
 	
 	public String addString(boolean check) {
 		if(check == true) {

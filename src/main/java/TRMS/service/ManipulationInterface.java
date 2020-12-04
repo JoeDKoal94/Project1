@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
+import TRMS.pojos.AfterEventForm;
 import TRMS.pojos.ApplicationStatus;
 import TRMS.pojos.Employee;
 import TRMS.pojos.Form;
@@ -18,6 +19,9 @@ public interface ManipulationInterface {
 
 	public Form createForm(LocalDate date, LocalTime time, String location, String description, String grading, String typeOfEvent, byte[] attachments, double cost, boolean isUrgent, int employeeId, double projectedAmount);
 	
+	public AfterEventForm createPress(int appId, String grade, boolean passing);
+	
+	public boolean checkPass(int formNumber);
 	
 	public Employee fetchEmployee(String username);
 	

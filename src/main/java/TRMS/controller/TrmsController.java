@@ -186,7 +186,7 @@ public class TrmsController {
 		String target = ctx.formParam("target");
 		boolean willExceed = Boolean.parseBoolean(ctx.formParam("boolAmount"));
 		String reasonMon = ctx.formParam("reasonMon");
-		double amountExceed = Double.parseDouble(ctx.formParam("exceedAmount"));
+		double amountExceed = ctx.formParam("exceedAmount", Double.class).get();
 		theStack.updateTheBencoWaitlist(aformNumber, apApprove, addInfo, reason, emp.getAuthority(), target, willExceed, reasonMon, amountExceed);
 		log.info("Updated the Waitlist");
 	}
@@ -204,6 +204,18 @@ public class TrmsController {
 		bFormNumber = Integer.parseInt(ctx.cookie("numForm"));
 		theStack.updateMyConsent(bFormNumber, update);
 		log.info("Application updated");
+	}
+	
+	public void applyAfterForm(Context ctx) {
+		bFormNumber = Integer.parseInt(ctx.cookie("numForm"));
+		log.info("Fetched cookie " + bFormNumber + " to access desired Application Form Details");
+		ApplicationStatus app = theStack.fetchAppStatus(bFormNumber);
+		if(theStack.checkPass(bFormNumber)) {
+		int appId = app.getApprovalId();
+		String grade = ctx.formParam("grade");
+		boolean apPass = Boolean.parseBoolean(ctx.formParam("passing"));
+		theStack.createPress(appId, grade, apPass);
+		}
 	}
 	
 	public TrmsController() {

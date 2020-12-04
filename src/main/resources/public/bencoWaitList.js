@@ -69,10 +69,11 @@ let addRow = function (myWait) {
     tableRow.appendChild(reasonAwarded);
     table.appendChild(tableRow);
 
-     priorCol.innerHTML = myWait.priorityNumber;
+    priorCol.innerHTML = myWait.priorityNumber;
     appIDCol.innerHTML = myWait.approvalId;
     appStatCol.innerHTML = myWait.dsApproval;
     addInfoCol.innerHTML = myWait.infoReq;
+    targetCol.innerHTML - myWait.target;
     urgentCol.innerHTML = myWait.isUrgent;
     willExceedCol.innerHTML = myWait.reasonExceed;
     amountAwardeds.innerHTML = myWait.amountAwarded;
@@ -83,7 +84,11 @@ let addRow = function (myWait) {
     appIDCol.className = "table-style";
     appStatCol.className = "table-style";
     addInfoCol.className = "table-style";
+    targetCol.classname = "table-style";
     urgentCol.className = "table-style";
+    willExceedCol.className = "table-style";
+    amountAwardeds.className = "table-style";
+    reasonAwarded.className = "table-style";
     tableRow.className = "table-style";
     
 
