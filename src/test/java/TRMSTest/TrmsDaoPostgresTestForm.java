@@ -14,6 +14,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -30,7 +31,7 @@ import TRMS.pojos.Form;
 import TRMS.util.ConnectionUtil;
 
 @RunWith(MockitoJUnitRunner.class)
-public class TrmsDaoPostgresTest {
+public class TrmsDaoPostgresTestForm {
 	
 	public TrmsDaoPostgres testDao = new TrmsDaoPostgres();
 	
@@ -83,6 +84,7 @@ public class TrmsDaoPostgresTest {
 		f.setUrgent(false);
 		f.setEmployeeId(1);
 		f.setTimePosted(LocalTime.parse("08:00"));
+		f.setFormNumber(1);
 		
 		when(rs.first()).thenReturn(true);
 		when(rs.getInt(1)).thenReturn(90);
@@ -138,7 +140,15 @@ public class TrmsDaoPostgresTest {
 		Form z = dao.retrieveForm(90);
 		assertEquals(null, z);
 	}
-	
-	
 
+	
+	@Test
+	public void retrieveFormList() throws SQLException {
+		TrmsDaoPostgres dao = new TrmsDaoPostgres(ds);
+		dao.createForm(f);
+		List<Form> g = dao.retrieveSubmittedForms(1);
+		assertEquals(1, g.size());
+	}
+	
+	
 }

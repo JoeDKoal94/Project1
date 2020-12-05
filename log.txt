@@ -3,16 +3,35 @@ Benefits Coordinator has been Notified and sent an email to.
 Benefits Coordinator has been Notified and sent an email to.
 Benefits Coordinator has been Notified and sent an email to.
 Benefits Coordinator has been Notified and sent an email to.
+Data retrieved from Database
+Data retrieved from Database
+Data retrieved from Database
+Username JoeDKoal94 has logged in
+Log in successful
 Benefits Coordinator has been Notified and sent an email to.
 Benefits Coordinator has been Notified and sent an email to.
 Benefits Coordinator has been Notified and sent an email to.
 Benefits Coordinator has been Notified and sent an email to.
 Benefits Coordinator has been Notified and sent an email to.
+Data retrieved from Database
+UploadedFile has converted into byte array
+Database Updated
+Attempting to communicate with Stack to connect to database.
+Form Created.
 Benefits Coordinator has been Notified and sent an email to.
 Benefits Coordinator has been Notified and sent an email to.
 Benefits Coordinator has been Notified and sent an email to.
 Benefits Coordinator has been Notified and sent an email to.
 Benefits Coordinator has been Notified and sent an email to.
+Data retrieved from Database
+Validating user before fetching list from database
+Data retrieved from Database
+Sending Data to be viewed in HTML
+Fetched cookie 31 to access desired Form
+Data retrieved from Database
+Form Number31has been fetched
+Fetched cookie 31 to access desired Application Form Details
+Data retrieved from Database
 Benefits Coordinator has been Notified and sent an email to.
 Benefits Coordinator has been Notified and sent an email to.
 Benefits Coordinator has been Notified and sent an email to.
@@ -43,6 +62,7 @@ Benefits Coordinator has been Notified and sent an email to.
 Benefits Coordinator has been Notified and sent an email to.
 Benefits Coordinator has been Notified and sent an email to.
 Benefits Coordinator has been Notified and sent an email to.
+Direct Supervisor has been auto approved
 Benefits Coordinator has been Notified and sent an email to.
 Benefits Coordinator has been Notified and sent an email to.
 Benefits Coordinator has been Notified and sent an email to.
@@ -73,6 +93,7 @@ Benefits Coordinator has been Notified and sent an email to.
 Benefits Coordinator has been Notified and sent an email to.
 Benefits Coordinator has been Notified and sent an email to.
 Benefits Coordinator has been Notified and sent an email to.
+Department Head has been auto approved
 Benefits Coordinator has been Notified and sent an email to.
 Benefits Coordinator has been Notified and sent an email to.
 Benefits Coordinator has been Notified and sent an email to.
@@ -130,24 +151,9 @@ Benefits Coordinator has been Notified and sent an email to.
 Benefits Coordinator has been Notified and sent an email to.
 Benefits Coordinator has been Notified and sent an email to.
 Benefits Coordinator has been Notified and sent an email to.
-Benefits Coordinator has been Notified and sent an email to.
-Benefits Coordinator has been Notified and sent an email to.
-Benefits Coordinator has been Notified and sent an email to.
-Benefits Coordinator has been Notified and sent an email to.
-Benefits Coordinator has been Notified and sent an email to.
-Benefits Coordinator has been Notified and sent an email to.
-Benefits Coordinator has been Notified and sent an email to.
-Benefits Coordinator has been Notified and sent an email to.
-Benefits Coordinator has been Notified and sent an email to.
-Benefits Coordinator has been Notified and sent an email to.
-Benefits Coordinator has been Notified and sent an email to.
-Benefits Coordinator has been Notified and sent an email to.
-Benefits Coordinator has been Notified and sent an email to.
-Benefits Coordinator has been Notified and sent an email to.
-Benefits Coordinator has been Notified and sent an email to.
-Benefits Coordinator has been Notified and sent an email to.
-Benefits Coordinator has been Notified and sent an email to.
-Benefits Coordinator has been Notified and sent an email to.
+Fetched cookie 31 to access desired Form
+Data retrieved from Database
+Form Number31has been fetched
 Benefits Coordinator has been Notified and sent an email to.
 Benefits Coordinator has been Notified and sent an email to.
 Benefits Coordinator has been Notified and sent an email to.
