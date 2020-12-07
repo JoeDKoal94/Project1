@@ -36,6 +36,7 @@ TimerDao schedUpdate = new TimerDao("postgres");
 		app.get(EMP_INFO + "/view/application-status", ctx -> trmsController.viewAppStatus(ctx));
 		app.post(EMP_INFO + "/view/application-status", ctx -> trmsController.updateTheConsent(ctx));
 		app.post(EMP_INFO + "/view/application-status/after-form", ctx -> trmsController.applyAfterForm(ctx));
+		app.get(EMP_INFO + "/view/application-status/after-form", ctx -> trmsController.viewWaitForm(ctx));
 		app.get(EMP_MENU + "/ds", ctx -> trmsController.viewDSList(ctx));
 		app.get(EMP_MENU + "/dsDhV", ctx -> trmsController.viewWaitForm(ctx));
 		app.post(EMP_MENU + "/dsDhV", ctx -> trmsController.updateTheWaitlists(ctx));

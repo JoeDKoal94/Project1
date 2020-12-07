@@ -38,7 +38,7 @@ private static Logger log = Logger.getRootLogger();
 		
 		String sql = "select \"TRMS\".approval_form.approval_id, ds_approval, dh_approval, benco_approval, time_posted, event_date, \"TRMS\".approval_form.form_number from \"TRMS\".approval_form inner join \"TRMS\".form on \"TRMS\".form.form_number = \"TRMS\".approval_form.form_number \r\n"
 				+ "where (\"TRMS\".form.time_posted + interval '3 minute' <= localtime) \r\n"
-				+ "and \"TRMS\".form.approval_status is not true;";
+				+ "and \"TRMS\".form.approval_status is not true and \"TRMS\".approval_form.approval_status not like 'Denied%';";
 		String sentBackDS = "update \"TRMS\".ds_waitlist set ds_approval = true where approval_id = ";
 		String sentBackDH = "update \"TRMS\".dh_waitlist set dh_approval = true where approval_id = ";
 		String notifyBenCo = "update \"TRMS\".benco_waitlist set notify_me = true where approval_id = ";

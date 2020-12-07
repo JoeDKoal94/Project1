@@ -36,6 +36,7 @@ public class TrmsController {
 		String grading = ctx.formParam("gradingFormat");
 		String typeEvent = ctx.formParam("typeOfEvent");
 		UploadedFile attachments = ctx.uploadedFile("files");
+		
 		byte[] attachment = null;
 		try {
 			if(attachments != null) {
@@ -112,7 +113,8 @@ public class TrmsController {
 			
 		}
 		else {
-			ctx.redirect("formMenu.html?error=unautorized-access");
+			ctx.status(401);
+			ctx.redirect("/formMenu.html");
 			log.info("User not authorized to access feature");
 		}
 	}
@@ -207,13 +209,16 @@ public class TrmsController {
 	}
 	
 	public void applyAfterForm(Context ctx) {
-		bFormNumber = Integer.parseInt(ctx.cookie("numForm"));
+		bFormNumber = Integer.parseInt(ctx.cookie("numApp"));
 		log.info("Fetched cookie " + bFormNumber + " to access desired Application Form Details");
 		ApplicationStatus app = theStack.fetchAppStatus(bFormNumber);
 		if(theStack.checkPass(bFormNumber)) {
 		int appId = app.getApprovalId();
-		String grade = ctx.formParam("grade");
-		boolean apPass = Boolean.parseBoolean(ctx.formParam("passing"));
+		String grade = ctx.formParam("apPassing");
+		boolean apPass;
+		if(grade == "C" || grade == "B" || grade == "A") {
+			apPass = true;
+		}else { apPass = false; }
 		theStack.createPress(appId, grade, apPass);
 		}
 	}
@@ -222,4 +227,6 @@ public class TrmsController {
 		
 	}
 
+	
+	
 }

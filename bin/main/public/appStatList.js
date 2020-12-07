@@ -48,6 +48,7 @@ let addInfo = function (myApp) {
     let noLabel = document.createElement("label");
     let conyes = document.createElement("input");
     let conNo = document.createElement("input");
+    let resBut = document.createElement("button");
     yesLabel.innerHTML = "Yes";
 	noLabel.innerHTML = "No";
     conyes.type = "radio";
@@ -76,9 +77,11 @@ let addInfo = function (myApp) {
 	let amoExCol = document.createElement("td");
 	let reaExCol = document.createElement("td");
 	let conExCol = document.createElement("td");
+	let resultCol = document.createElement("td");
 
 	
 	conExCol.appendChild(conform);
+	resultCol.appendChild(resBut);
 	
     tableRow.appendChild(appIDCol);
     tableRow.appendChild(formNumCol);
@@ -91,6 +94,7 @@ let addInfo = function (myApp) {
     tableRow.appendChild(amoExCol);
     tableRow.appendChild(reaExCol);
     tableRow.appendChild(conExCol);
+    tableRow.appendChild(resultCol);
     table.appendChild(tableRow);
 
 	conBut.innerHTML = "Consent";
@@ -112,6 +116,10 @@ let addInfo = function (myApp) {
 	else if(myApp.amExceed == false){
 	conBut.disabled = true;
 	}
+	
+	   if(myApp.appStatus != "Approved"){
+    		resultCol.hidden = true;
+    }
     appIDCol.className = "table-style";
     formNumCol.className = "table-style";
     dsAppCol.className = "table-style";
@@ -123,6 +131,7 @@ let addInfo = function (myApp) {
     amoExCol.className = "table-style";
     reaExCol.className = "table-style";
     conExCol.className = "table-style";
+ 
 
 
  conform.setAttribute("action", "http://localhost:9090/menu/employee/view/application-status");
@@ -133,3 +142,8 @@ let addInfo = function (myApp) {
     	}
     
 }
+	resBut.id = myApp.approvalId;
+    resBut.onclick = function(){
+    	document.cookie = "numApp = " + myWait.approvalId;
+    	window.location.href='viewFormAfter.html';
+    }

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>View Application Details</title>
+<link rel='stylesheet' href='view.css'>
+</head>
+<body>
+	<ul>
+	<li><a id= "employeeId"></a></li>
+	<li><a  id = "eventDate"></a></li>
+	<li><a id = "eventTime"></a></li>
+	<li><a id = "eventLocation"></a></li>
+	<li><a id = "eventLocation">Description: <textarea id = "description" disabled = "disabled"></textarea></a></li>
+	<li><a id = "gradingFormat"></a></li>
+	<li><a id = "typeOfEvent"></a></li>
+	<li><a id = "azttachments">Attachments: <br><img id = "attachments" src=""></a></li>
+	<li><a id = "cost"></a></li>
+	<li><a id = "approvalStatus"></a></li>
+	<li><a>Is Urgent: <input type = "checkbox" id = "isUrgent" disabled = "disabled"></a></li>
+	<li><a id = "projectedAmount"></a></li>
+	</ul>
+	
+	
+	<form action = "menu/employee/view/application-status/after-form" method = "POST">
+	
+	<ul>
+		<li><a>Event Results<br>
+		<label for = "apPassing">Grade<input type = "text" name = "apPassing" id = "apPassing"></label></a><li>
+		<li><a><label for = "apProof">Attached Proof<input type = "file" name="proof"></label></a>
+	</ul>
+	
+	<a href= 'formMenu.html'><button type="submit" id="sendingIt">Submit</button></a>
+	</form>
+<script src = "fetchAndDecideAfter.js" type = "text/javascript"></script>
+</body>
+</html>
